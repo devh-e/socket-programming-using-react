@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      background-color: #cecece;
+    }
+    #form-box {
+      width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #form-box > #messages > div {
+      overflow: hidden;
+      margin-top: 5px;
+    }
+    #form-box > #messages > div > .me {
+      float: left;
+      background-color: #fff;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      padding: 5px;
+    }
+    #form-box > #messages > div > .others {
+      float: right;
+      background-color: #fff;
+      border-top-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      padding: 5px;
+    }
+    #form-box > #messages > div > .private {
+      float: right;
+      background-color: #dad9ff;
+      border-top-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      border-bottom-left-radius: 15px;
+      padding: 5px;
+    }
+    #form-box > #messages > div > .center {
+      text-align: center;
+    }
+    #form-box > #target {
+      margin-top: 10px;
+    }
+  </style>
+  <body>
+    <div id="form-box">
+      <h2 id="socket-id"></h2>
+      <form name="publish">
+        <input type="text" name="message" />
+        <input type="submit" value="Send" />
+      </form>
+      Destination:<input type="text" name="target" id="target" />
+
+      <div id="messages"></div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"
+      integrity="sha512-HTENHrkQ/P0NGDFd5nk6ibVtCkcM7jhr2c7GyvXp5O+4X6O5cQO9AhqFzM+MdeBivsX7Hoys2J7pp2wdgMpCvw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      const socket = io("http://127.0.0.1:5000");
+
+      socket.on("sMessage", (msg) => {
+        if (msg.indexOf("private") > -1) {
+          viewMsg(msg.split("private-")[1], "private");
+        } else {
+          viewMsg(msg, "others");
+        }
+      });
+      socket.on("welcomeMsg", (res) => {
+        viewMsg(res, "center");
+      });
+      socket.on("socketId", (res) => {
+        document.getElementById("socket-id").textContent = res;
+      });
+
+      document.forms.publish.onsubmit = function () {
+        const sendMsg = this.message.value;
+        socket.emit(
+          "message",
+          JSON.stringify({
+            msg: sendMsg,
+            target: document.getElementById("target").value,
+          })
+        );
+        viewMsg(sendMsg, "me");
+        this.message.value = "";
+        return false;
+      };
+
+      function viewMsg(msg, flag) {
+        let msgElWrap = document.createElement("div");
+        let msgEl = document.createElement("div");
+        msgEl.className = flag;
+        msgEl.textContent = msg;
+        msgElWrap.prepend(msgEl);
+        document.getElementById("messages").prepend(msgElWrap);
+      }
+    </script>
+  </body>
+</html>

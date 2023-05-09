@@ -1,0 +1,34 @@
+.text-wrap {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.active {
+    color: green;
+}
+.deactive {
+    color: red;
+}
+.btn-box {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.active-btn {
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #00d8ff;
+    cursor: pointer;
+}
+.deactive-btn {
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    cursor: pointer;
+}
