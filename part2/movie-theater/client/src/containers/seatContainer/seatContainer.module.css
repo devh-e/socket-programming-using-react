@@ -1,0 +1,65 @@
+.seat_container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  text-align: left;
+}
+.screen {
+  margin-top: 50px;
+  background-color: #cecece;
+  width: 200px;
+  text-align: center;
+}
+.wrap_seats {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  list-style: none;
+  flex-wrap: wrap;
+  padding: 20px;
+  width: 240px;
+}
+.seat {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.default {
+  background-color: #cecece;
+}
+.default:hover {
+  background-color: blue;
+}
+.empty {
+  background-color: #fff;
+  cursor: default;
+}
+.active {
+  background-color: blue;
+}
+.soldout {
+  background-color: red;
+  cursor: default;
+}
+.r_wrap {
+  width: 240px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.r_title {
+  margin: 0;
+}
+.r_confirm {
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #6cc0ff;
+  color: #fff;
+  cursor: pointer;
+}
