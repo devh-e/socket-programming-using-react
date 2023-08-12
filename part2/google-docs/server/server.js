@@ -2,8 +2,7 @@
 const mongoose = require("mongoose");
 const Document = require("./Schema");
 
-const uri =
-  "mongodb+srv://google-docs:1111@cluster0.6suahnm.mongodb.net/?retryWrites=true&w=majority";
+const uri ="MongoDB URL";
 
 mongoose.set("strictQuery", false);
 mongoose
