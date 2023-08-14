@@ -16,6 +16,7 @@ const groupRoom = new Schema({
   type: String,
 });
 
+// 3
 const msg = new Schema({
   roomNumber: String,
   msg: String,

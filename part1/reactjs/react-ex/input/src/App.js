@@ -12,17 +12,17 @@ function App() {
     setText("Hi");
     console.log("once");
   }, []);
-  
+  // 5
   useEffect(() => {
     console.log(textRef.current);
   }, [text]);
-  
+  // 6
   const onTextStateChangeHandler = (e) => {
     const msg = e.target.value;
     setText(msg);
   };
   return (
-    // 5
+    // 7
     <div className="App">
       <input
         ref={textRef}
