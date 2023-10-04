@@ -9,7 +9,7 @@
 
 <h2>브라우저 접속 포트번호 오타</h2>
 <ul>
-<li><span><b>위치:</b></span><span> PART 1 소켓통신 75페이지</span></li>
+<li><span><b>위치:</b></span><span> 75p, 101p, 131p, 147p</span></li>
 <li><span><b>수정 전:</b></span><span>http://localhost:5000</span></li>
 <li><span><b>수정 후:</b></span><span>http://localhost:<b style="color:red;">3000</b></span></li>
 </ul>
